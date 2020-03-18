@@ -16,12 +16,12 @@ del data['type']
 
 X = data[['step','amount','oldbalanceOrg','newbalanceOrig','oldbalanceDest','newbalanceDest','isFlaggedFraud']]# Here is X are the Features 
 y = data['isFraud'] # Here is y are Target
-logitic = linear_model.LogisticRegression()
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-model = logitic.fit(X_train,y_train)
+algo= linear_model.LogisticRegression() #Declaring the algorithm to be used for the model
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42) #Splitting the data into Test and Train
+model = algo.fit(X_train,y_train) #Fitting the Train data into the algorithim to become the model
 
-predictions = model.predict(X_test)
-print(classification_report(y_test,predictions))
-print(confusion_matrix(y_test, predictions))
-accuracy_score(y_test,predictions)
+predictions = model.predict(X_test) #Using the model to predict y_test based on X_test values
+print(classification_report(y_test,predictions)) #Used to provide the Recall/Precision/F1 score report of the whole data
+print(confusion_matrix(y_test, predictions)) #Used To provide a layout to the summary of the performance of algorithim
+accuracy_score(y_test,predictions) #Provide the accuracy of the algorithm
 print ("Logistic Regression Accuracy", accuracy_score(y_test,predictions))
